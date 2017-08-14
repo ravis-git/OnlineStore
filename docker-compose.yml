@@ -17,7 +17,7 @@ services:
     links:
       - couchbase-store
     external_links:
-      - infrastructure_consul_1
+      - storeinfrastructure_consul_1
 
   couchbase-store:
     build: ./couchbase
