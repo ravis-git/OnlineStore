@@ -1,0 +1,35 @@
+# hostname should match the couchbase host name for the environment. here it is local and
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: online-store
+
+---
+spring:
+  profiles: dev
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+
+couchbase:
+  bucket:
+    name: onlinestore
+    password: password
+  bootstrap-hosts: localhost
+
+---
+spring:
+  profiles: docker
+  cloud:
+    consul:
+      host: infrastructure_consul_1
+      port: 8500
+
+couchbase:
+  bucket:
+    name: onlinestore
+    password: password
+  bootstrap-hosts: couchbase-store

@@ -1,0 +1,27 @@
+# docker-compose file for a microservice lists all containers the service needs. In this case, couchbase to store data
+
+version: '3'
+
+services:
+
+  online-store:
+    build: .
+    network_mode: bridge
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - couchbase-store
+#      - consul
+    links:
+      - couchbase-store
+    external_links:
+      - infrastructure_consul_1
+
+  couchbase-store:
+    build: ./couchbase
+    network_mode: bridge
+    ports:
+      - 8191:8091
+
