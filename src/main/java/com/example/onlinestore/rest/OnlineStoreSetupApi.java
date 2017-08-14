@@ -38,6 +38,9 @@ public class OnlineStoreSetupApi {
                 }
         );
 
+        onlineStoreService.createOnlineStore(onlineStore);
+
+        // TODO: anti pattern to mix things up. Make this a choreography intaead in the next iteration
         productService.setupInitialProducts();
 
         return Create.builder().responseCode(201)
